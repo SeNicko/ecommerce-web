@@ -108,11 +108,11 @@ const Home = () => {
 					</div>
 				</section>
 				<section className="home__section">
-					<h2 className="home__section-title">New trends</h2>
+					<h2 className="home__section-title">New products for Men</h2>
 					<Carousel products={trends} />
 				</section>
 				<section className="home__section">
-					<h2 className="home__section-title">Best offers</h2>
+					<h2 className="home__section-title">New products for Woman</h2>
 					<Carousel products={offers} />
 				</section>
 			</div>

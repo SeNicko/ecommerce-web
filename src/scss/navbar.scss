@@ -1,84 +1,59 @@
-$product-nav-height: 60px;
-$nav-background: #fff;
+@use "./base/mixins";
 
-.nav {
+$header-height: 60px;
+$mobile-nav-width: 500px;
+
+.header {
 	display: flex;
-	justify-content: center;
-	align-items: stretch;
-	width: 100%;
-	height: $product-nav-height;
-	background: $nav-background;
-	padding: 0 15vw;
-
-	& > * {
-		display: flex;
-		flex-grow: 1;
-	}
+	justify-content: space-between;
+	height: $header-height;
+	background: #fff;
+	padding: 0 40px;
 
 	&__logo {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
+		@include mixins.flex($justify: flex-start);
 	}
 
-	&__cart {
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
+	&__actions {
+		@include mixins.flex($justify: flex-end);
 	}
 }
 
-.menu {
-	display: none;
-	justify-content: center;
-
-	&__item {
-		position: relative;
-		display: block;
-		height: $product-nav-height;
-
-		&:hover &::after {
-			content: "";
-			display: block;
-			top: 0;
-			left: 0;
-			position: absolute;
-			width: 100px;
-			height: 10px;
-			background: black;
-		}
-
-		&:hover > .dropdown {
-			display: flex;
-		}
-	}
-
-	&__link {
-		display: flex;
-		align-items: center;
-		height: 100%;
-		padding: 0 1em;
-	}
-}
-
-.dropdown {
-	box-sizing: content-box;
-	display: none;
-	flex-direction: column;
+.nav-mobile {
+	@include mixins.flex($direction: column);
+	visibility: hidden;
 	position: absolute;
-	top: $product-nav-height;
-	padding: 1em;
 	left: 0;
+	top: 0;
+	height: 100vh;
+	width: $mobile-nav-width;
+	z-index: 3;
 	background: #fff;
-	width: fit-content;
+	transform: translateX(-$mobile-nav-width);
+	transition: all 0.2s ease-in-out;
 
-	&__item:not(:last-child) {
-		padding-bottom: 10px;
+	&-scrim {
+		visibility: hidden;
+		position: fixed;
+		opacity: 0;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 2;
+		background: rgba(#000, 0.4);
+		transition: opacity 0.2s ease-in-out;
+		backdrop-filter: blur(4px);
+
+		&--shown {
+			visibility: visible;
+			opacity: 1;
+		}
 	}
-}
 
-@media (min-width: 850px) {
-	.menu {
-		display: flex;
+	&--shown {
+		position: absolute;
+		visibility: visible;
+		transform: translateX(0px);
 	}
 }

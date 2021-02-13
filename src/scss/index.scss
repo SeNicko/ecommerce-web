@@ -9,16 +9,13 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.App {
-	width: 100%;
-}
-
 .button {
 	display: inline-block;
 	border: none;
 	outline: none;
 	cursor: pointer;
 	width: fit-content;
+	background: #fff;
 
 	&--primary {
 		background-color: #333;
@@ -26,6 +23,10 @@
 		padding: 0.5em 1em;
 		border-radius: 20px;
 		font-size: 16px;
+
+		&:hover {
+			background: #444;
+		}
 	}
 }
 

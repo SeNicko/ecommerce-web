@@ -1,7 +1,7 @@
 import "../scss/footer.scss";
 
 const Footer = () => {
-	return <footer className="footer"></footer>;
+	return <footer className="footer">Niko 2021 ® All rights reserved</footer>;
 };
 
 export default Footer;

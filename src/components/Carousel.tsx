@@ -12,7 +12,8 @@ const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
 
 	const handleControlClick = (direction: boolean) => {
 		if (carousel.current) {
-			const amount = 300;
+			// Width of one card + grid gap
+			const amount = carousel.current.children[0].clientWidth + 25;
 			const offset = direction
 				? carousel.current.scrollLeft + amount
 				: carousel.current.scrollLeft - amount;
