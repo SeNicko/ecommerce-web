@@ -1,0 +1,96 @@
+@use "./base/mixins";
+
+$mobile-nav-width: 320px;
+
+.nav-mobile {
+	@include mixins.flex($direction: column, $justify: flex-start, $align: flex-start);
+	visibility: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	width: $mobile-nav-width;
+	z-index: 3;
+	background: #fff;
+	transform: translateX(-$mobile-nav-width);
+	transition: all 0.2s ease-in-out;
+	padding: 20px 40px;
+
+	& > *:not(:last-child) {
+		margin-bottom: 30px;
+	}
+
+	// back button
+	&__back-button {
+		@include mixins.button;
+	}
+
+	&__back-button-content {
+		font-size: 16px;
+		padding-left: 10px;
+	}
+
+	// Category name
+	&__category-name {
+		font-size: 24px;
+	}
+
+	// Menu
+	&__menu {
+		width: 100%;
+		height: max(40vh, 400px);
+	}
+
+	&__menu-item {
+		width: 100%;
+	}
+
+	// Menu button
+	&__menu-button {
+		@include mixins.button($justify: space-between);
+		width: 100%;
+		font-size: 18px;
+		background: white;
+		padding: 5px;
+
+		&--primary {
+			padding: 10px 0;
+		}
+	}
+
+	&__menu-button-content {
+		font-size: 16px;
+		color: #444;
+		text-align: left;
+
+		&--primary {
+			color: black;
+			font-size: 24px;
+		}
+	}
+
+	&--shown {
+		position: absolute;
+		visibility: visible;
+		transform: translateX(0px);
+	}
+}
+
+.nav-mobile-scrim {
+	visibility: hidden;
+	position: fixed;
+	opacity: 0;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 2;
+	background: rgba(#000, 0.4);
+	transition: opacity 0.2s ease-in-out;
+	backdrop-filter: blur(4px);
+
+	&--shown {
+		visibility: visible;
+		opacity: 1;
+	}
+}

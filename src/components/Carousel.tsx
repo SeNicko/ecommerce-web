@@ -3,6 +3,9 @@ import { FunctionComponent, useRef } from "react";
 import { Product } from "../interfaces/api";
 import CarouselItem from "./CarouselItem";
 
+import { ReactComponent as LeftArrow } from "bootstrap-icons/icons/chevron-left.svg";
+import { ReactComponent as RightArrow } from "bootstrap-icons/icons/chevron-right.svg";
+
 interface CarouselProps {
 	products: Product[];
 }
@@ -12,7 +15,7 @@ const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
 
 	const handleControlClick = (direction: boolean) => {
 		if (carousel.current) {
-			// Width of one card + grid gap
+			// Width of card + grid gap
 			const amount = carousel.current.children[0].clientWidth + 25;
 			const offset = direction
 				? carousel.current.scrollLeft + amount
@@ -29,34 +32,10 @@ const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
 		<section className="carousel">
 			<div className="carousel__overlay">
 				<span className="carousel__control" onClick={() => handleControlClick(false)}>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						fill="currentColor"
-						className="bi bi-chevron-left"
-						viewBox="0 0 16 16"
-					>
-						<path
-							fillRule="evenodd"
-							d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-						/>
-					</svg>
+					<LeftArrow />
 				</span>
 				<span className="carousel__control" onClick={() => handleControlClick(true)}>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						fill="currentColor"
-						className="bi bi-chevron-right"
-						viewBox="0 0 16 16"
-					>
-						<path
-							fillRule="evenodd"
-							d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-						/>
-					</svg>
+					<RightArrow />
 				</span>
 			</div>
 			<div className="carousel__scroll" ref={carousel}>

@@ -1,7 +1,6 @@
 @use "./base/mixins";
 
 $header-height: 60px;
-$mobile-nav-width: 500px;
 
 .header {
 	display: flex;
@@ -16,44 +15,9 @@ $mobile-nav-width: 500px;
 
 	&__actions {
 		@include mixins.flex($justify: flex-end);
-	}
-}
 
-.nav-mobile {
-	@include mixins.flex($direction: column);
-	visibility: hidden;
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100vh;
-	width: $mobile-nav-width;
-	z-index: 3;
-	background: #fff;
-	transform: translateX(-$mobile-nav-width);
-	transition: all 0.2s ease-in-out;
-
-	&-scrim {
-		visibility: hidden;
-		position: fixed;
-		opacity: 0;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
-		z-index: 2;
-		background: rgba(#000, 0.4);
-		transition: opacity 0.2s ease-in-out;
-		backdrop-filter: blur(4px);
-
-		&--shown {
-			visibility: visible;
-			opacity: 1;
+		&-item {
+			margin-left: 20px;
 		}
-	}
-
-	&--shown {
-		position: absolute;
-		visibility: visible;
-		transform: translateX(0px);
 	}
 }

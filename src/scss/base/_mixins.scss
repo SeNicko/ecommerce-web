@@ -4,3 +4,12 @@
 	align-items: $align;
 	justify-content: $justify;
 }
+
+@mixin button($align: center, $justify: flex-start) {
+	@include flex($align: $align, $justify: $justify);
+
+	outline: none;
+	border: none;
+	background-color: white;
+	cursor: pointer;
+}

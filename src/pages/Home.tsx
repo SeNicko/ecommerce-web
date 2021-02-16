@@ -1,7 +1,7 @@
 import "../scss/home.scss";
 import { Link } from "react-router-dom";
 import { Product } from "../interfaces/api";
-import spotlightImage from "../assets/spotlight.jpg";
+import spotlightImage from "../assets/images/spotlight.jpg";
 import Carousel from "../components/Carousel";
 
 const trends: Product[] = [
