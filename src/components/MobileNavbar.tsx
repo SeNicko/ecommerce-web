@@ -1,5 +1,5 @@
 import "../scss/mobile-navbar.scss";
-import { useState, FunctionComponent } from "react";
+import { useState, FunctionComponent, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as RightArrow } from "../assets/icons/chevron-right.svg";
 import { ReactComponent as LeftArrow } from "../assets/icons/chevron-left.svg";
@@ -39,6 +39,8 @@ interface MobileNavbarProps {
 
 const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, categories }) => {
 	const [nest, setNest] = useState<number[]>([]);
+	const [displayedCategories, setDisplayedCategories] = useState<Category[]>([]);
+	const [parentCategoryName, setParentCategoryName] = useState<string>();
 
 	// Go next in category tree
 	const next = (level: number) => setNest([...nest, level]);
@@ -64,6 +66,19 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, c
 		return currentCategories;
 	};
 
+	useEffect(() => {
+		let currentCategories: Category[] = categories;
+
+		nest.forEach((nestLevel) => {
+			if (currentCategories[nestLevel].children) {
+				setParentCategoryName(currentCategories[nestLevel].name);
+				currentCategories = currentCategories[nestLevel].children as Category[];
+			}
+		});
+
+		setDisplayedCategories(currentCategories);
+	}, [nest, categories]);
+
 	return (
 		<>
 			<div className={`nav-mobile ${toggled && "nav-mobile--shown"}`}>
@@ -73,13 +88,13 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, c
 							<LeftArrow width="25" height="25" />
 							<span className="nav-mobile__back-button-content">Back</span>
 						</button>
-						{nest.length > 0 && (
-							<span className="nav-mobile__category-name">Category name</span>
+						{parentCategoryName && (
+							<span className="nav-mobile__category-name">{parentCategoryName}</span>
 						)}
 					</>
 				)}
 				<ul className="nav-mobile__menu">
-					{getMobileShownCategories().map(({ name, slug, children }, i) => (
+					{displayedCategories.map(({ name, slug, children }, i) => (
 						<li className="nav-mobile__menu-item" onClick={() => next(i)} key={i}>
 							{children ? (
 								<MobileNavbarButton primary={nest.length === 0} content={name}>
