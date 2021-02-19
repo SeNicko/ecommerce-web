@@ -1,4 +1,4 @@
-import "../scss/mobile-navbar.scss";
+import "../scss/components/mobileNavbar.scss";
 import { useState, FunctionComponent, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as RightArrow } from "../assets/icons/chevron-right.svg";
@@ -52,20 +52,6 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, c
 		setNest(newNest);
 	};
 
-	// Get categories which should display at the moment
-	const getMobileShownCategories = () => {
-		let currentCategories: Category[] = categories;
-
-		nest.forEach((nestLevel) => {
-			if (currentCategories[nestLevel].children) {
-				// TODO: Set parent category name here somehow
-				currentCategories = currentCategories[nestLevel].children as Category[];
-			}
-		});
-
-		return currentCategories;
-	};
-
 	useEffect(() => {
 		let currentCategories: Category[] = categories;
 
@@ -85,7 +71,7 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, c
 				{nest.length > 0 && (
 					<>
 						<button className="nav-mobile__back-button" onClick={prev}>
-							<LeftArrow width="25" height="25" />
+							<LeftArrow />
 							<span className="nav-mobile__back-button-content">Back</span>
 						</button>
 						{parentCategoryName && (
@@ -98,7 +84,7 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, c
 						<li className="nav-mobile__menu-item" onClick={() => next(i)} key={i}>
 							{children ? (
 								<MobileNavbarButton primary={nest.length === 0} content={name}>
-									<RightArrow width="25" height="25" />
+									<RightArrow />
 								</MobileNavbarButton>
 							) : (
 								<Link to={`/category/${slug}`} onClick={toggle}>

@@ -5,11 +5,25 @@
 	justify-content: $justify;
 }
 
-@mixin button($align: center, $justify: flex-start) {
+@mixin button($align: center, $justify: flex-start, $padding: true, $primary: false) {
 	@include flex($align: $align, $justify: $justify);
 
 	outline: none;
 	border: none;
-	background-color: white;
+	width: fit-content;
+	border-radius: 50px;
 	cursor: pointer;
+
+	// Check if set padding
+	@if $padding {
+		padding: 0.8em 1.5em;
+	}
+
+	// Check if primary
+	@if $primary {
+		color: white;
+		background: black;
+	} @else {
+		background: white;
+	}
 }

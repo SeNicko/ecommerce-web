@@ -1,11 +1,11 @@
-import "../scss/navbar.scss";
+import "../scss/components/navbar.scss";
 import { Link } from "react-router-dom";
 import { FunctionComponent, useState } from "react";
 import { Category } from "../interfaces/api";
 import MobileNavbar from "./MobileNavbar";
 
-import { ReactComponent as Bag } from "bootstrap-icons/icons/bag.svg";
-import { ReactComponent as List } from "bootstrap-icons/icons/list.svg";
+import { ReactComponent as Bag } from "../assets/icons/bag.svg";
+import { ReactComponent as List } from "../assets/icons/burger.svg";
 
 const Navbar: FunctionComponent = () => {
 	const [mobileToggle, setMobileToggle] = useState(false);
@@ -129,10 +129,10 @@ const Navbar: FunctionComponent = () => {
 
 	return (
 		<header className="header">
-			<div className="header__logo">
-				<span>Niko</span>
+			<div className="header__section header__section--left">
+				<span className="header__logo">Niko</span>
 			</div>
-			<nav className="nav">
+			<nav className="header__section">
 				{mobileToggle && (
 					<MobileNavbar
 						toggle={toggleMobileNav}
@@ -141,15 +141,53 @@ const Navbar: FunctionComponent = () => {
 					/>
 				)}
 				<div className="nav-desktop">
-					<ul className="nav-desktop__menu"></ul>
+					<ul className="nav-desktop__menu">
+						{categories &&
+							categories.map((category, i) => (
+								<li className="nav-desktop__menu-item" key={i}>
+									<Link
+										to={`/category/${category.slug}`}
+										className="nav-desktop__menu-link"
+									>
+										{category.name}
+									</Link>
+									<div className="dropdown">
+										{category.children &&
+											category.children.map((category, i) => (
+												<ul className="dropdown__list" key={i}>
+													<li className="dropdown__item">
+														<Link
+															className="dropdown__link dropdown__link--header"
+															to={`/category/${category.slug}`}
+														>
+															{category.name}
+														</Link>
+													</li>
+													{category.children &&
+														category.children.map((category, i) => (
+															<li className="dropdown__item" key={i}>
+																<Link
+																	className="dropdown__link"
+																	to={`/category/${category.slug}`}
+																>
+																	{category.name}
+																</Link>
+															</li>
+														))}
+												</ul>
+											))}
+									</div>
+								</li>
+							))}
+					</ul>
 				</div>
 			</nav>
-			<div className="header__actions">
+			<div className="header__section header__section--right">
 				<Link to="/cart" className="header__actions-item">
 					<Bag />
 				</Link>
 				<button
-					className="header__nav-mobile-toggle button header__actions-item"
+					className="header__nav-mobile-toggle header__actions-item"
 					onClick={toggleMobileNav}
 				>
 					<List />

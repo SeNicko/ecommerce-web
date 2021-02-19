@@ -1,4 +1,4 @@
-@use "./base/mixins";
+@use "../base/mixins";
 
 $mobile-nav-width: 320px;
 
@@ -22,7 +22,7 @@ $mobile-nav-width: 320px;
 
 	// back button
 	&__back-button {
-		@include mixins.button;
+		@include mixins.button($padding: false);
 	}
 
 	&__back-button-content {

@@ -1,9 +1,11 @@
+@use '../base/mixins';
+
 .home {
 	display: grid;
 	grid-template-columns: 1fr;
+	gap: 6em;
+	padding: 10px;
 	justify-items: center;
-	gap: 120px;
-	padding: 40px 0 120px 0;
 
 	&__section {
 		width: 100%;
@@ -21,24 +23,32 @@
 .spotlight {
 	position: relative;
 	width: 100%;
-	height: 800px;
 
 	&__description {
+		position: absolute;
+		top: 0;
 		display: grid;
 		gap: 5px;
 		padding: 40px;
 	}
 
+	&__hint {
+		font-size: 24px;
+	}
+
 	&__title {
 		font-size: 2em;
+		width: 50%;
 	}
 
 	&__background {
 		object-fit: cover;
-		position: absolute;
 		width: 100%;
-		height: 100%;
 		z-index: -1;
+	}
+
+	&__button {
+		@include mixins.button($primary: true);
 	}
 }
 
@@ -68,9 +78,17 @@
 		display: block;
 		margin-top: 15px;
 	}
+
+	&__button {
+		@include mixins.button($primary: true);
+	}
 }
 
 @media (min-width: 750px) {
+	.home {
+		padding: 40px;
+	}
+
 	.news {
 		flex-direction: row;
 
@@ -82,17 +100,29 @@
 			margin-top: 0;
 		}
 	}
+
+	.spotlight {
+		&__title {
+			font-size: 3em;
+		}
+	}
 }
 
 @media (min-width: 1500px) {
 	.home {
 		&__section {
-			width: 95vw;
+			width: 90vw;
+		}
+	}
+
+	.spotlight {
+		&__title {
+			font-size: 4em;
 		}
 	}
 }
 
-@media (min-width: 1825px) {
+@media (min-width: 1850px) {
 	.home {
 		&__section {
 			width: 1800px;
