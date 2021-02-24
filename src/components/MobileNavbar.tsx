@@ -40,7 +40,7 @@ interface MobileNavbarProps {
 const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, categories }) => {
 	const [nest, setNest] = useState<number[]>([]);
 	const [displayedCategories, setDisplayedCategories] = useState<Category[]>([]);
-	const [parentCategoryName, setParentCategoryName] = useState<string>();
+	const [parentCategory, setParentCategory] = useState<Category>();
 
 	// Go next in category tree
 	const next = (level: number) => setNest([...nest, level]);
@@ -53,15 +53,19 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, c
 	};
 
 	useEffect(() => {
+		// set current categories to all categories
 		let currentCategories: Category[] = categories;
 
+		// For each nest level
 		nest.forEach((nestLevel) => {
+			// Check if category have children and update parent and current categories
 			if (currentCategories[nestLevel].children) {
-				setParentCategoryName(currentCategories[nestLevel].name);
+				setParentCategory(currentCategories[nestLevel]);
 				currentCategories = currentCategories[nestLevel].children as Category[];
 			}
 		});
 
+		// Update current categories and rerender component
 		setDisplayedCategories(currentCategories);
 	}, [nest, categories]);
 
@@ -74,12 +78,22 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, c
 							<LeftArrow />
 							<span className="nav-mobile__back-button-content">Back</span>
 						</button>
-						{parentCategoryName && (
-							<span className="nav-mobile__category-name">{parentCategoryName}</span>
+						{parentCategory?.name && (
+							<span className="nav-mobile__category-name">{parentCategory.name}</span>
 						)}
 					</>
 				)}
 				<ul className="nav-mobile__menu">
+					{nest.length > 0 && (
+						<Link to={`/category/${parentCategory?.slug}`} onClick={toggle}>
+							<MobileNavbarButton
+								primary={false}
+								content={`See all ${parentCategory?.name}`}
+							>
+								<RightArrow />
+							</MobileNavbarButton>
+						</Link>
+					)}
 					{displayedCategories.map(({ name, slug, children }, i) => (
 						<li className="nav-mobile__menu-item" onClick={() => next(i)} key={i}>
 							{children ? (
@@ -101,7 +115,7 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, c
 				)}
 			</div>
 			<div
-				className={"nav-mobile-scrim " + (toggled ? "nav-mobile-scrim--shown" : "")}
+				className={`nav-mobile-scrim ${toggled ? "nav-mobile-scrim--shown" : ""}`}
 				onClick={toggle}
 			/>
 		</>

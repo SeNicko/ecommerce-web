@@ -1,7 +1,7 @@
 $description: rgb(109, 109, 109);
 
-.carousel-item {
-	width: 300px;
+.product-card {
+	width: 100%;
 
 	&__image {
 		width: 100%;
@@ -24,18 +24,5 @@ $description: rgb(109, 109, 109);
 
 	&__price {
 		font-weight: 600;
-	}
-}
-
-@media (min-width: 1040px) {
-	.carousel-item {
-		width: 30vw;
-	}
-}
-
-@media (min-width: 1580px) {
-	.carousel-item {
-		width: 100%;
-		min-width: 100%;
 	}
 }

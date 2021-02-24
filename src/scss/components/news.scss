@@ -1,0 +1,36 @@
+@use "../base/mixins";
+
+.news {
+	@include mixins.flex($justify: center, $align: center, $direction: column);
+	width: 100%;
+	padding: 20px;
+	background: #eee;
+
+	&__item {
+		text-align: center;
+		color: #333;
+	}
+
+	&__button {
+		display: block;
+		margin-top: 15px;
+	}
+
+	&__button {
+		@include mixins.button($primary: true);
+	}
+}
+
+@media (min-width: 750px) {
+	.news {
+		@include mixins.flex($justify: center, $align: center);
+
+		&__item {
+			margin-right: 15px;
+		}
+
+		&__button {
+			margin-top: 0;
+		}
+	}
+}

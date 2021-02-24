@@ -1,3 +1,4 @@
+import "../scss/components/productCard.scss";
 import { FunctionComponent } from "react";
 import { Product } from "../interfaces/api";
 import { Link } from "react-router-dom";

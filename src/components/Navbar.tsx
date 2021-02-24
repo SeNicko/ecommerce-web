@@ -82,16 +82,16 @@ const Navbar: FunctionComponent = () => {
 			]
 		},
 		{
-			name: "Woman",
-			slug: "woman",
+			name: "Women",
+			slug: "women",
 			children: [
 				{
 					name: "Shoes",
-					slug: "woman-shoes",
+					slug: "women-shoes",
 					children: [
 						{
 							name: "Football shoes",
-							slug: "woman-football-shoes",
+							slug: "women-football-shoes",
 							children: null
 						}
 					]
@@ -120,6 +120,7 @@ const Navbar: FunctionComponent = () => {
 	const toggleMobileNav = () => {
 		setMobileToggle(!mobileToggle);
 
+		// Toggle ability to scroll page depending on mobileToggle
 		if (mobileToggle) {
 			document.body.style.overflow = "visible";
 		} else {
@@ -130,7 +131,9 @@ const Navbar: FunctionComponent = () => {
 	return (
 		<header className="header">
 			<div className="header__section header__section--left">
-				<span className="header__logo">Niko</span>
+				<Link to="/" className="header__logo">
+					Niko
+				</Link>
 			</div>
 			<nav className="header__section">
 				{mobileToggle && (

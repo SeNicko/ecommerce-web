@@ -14,3 +14,9 @@ export interface Product {
 	}[];
 	slug: string;
 }
+
+export interface ResourceRequest<T> {
+	data: T[];
+}
+
+export type SingleResourceRequest<T> = T[];

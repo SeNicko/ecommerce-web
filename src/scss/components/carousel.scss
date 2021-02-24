@@ -1,17 +1,21 @@
+$item-gap: 15px;
+
 .carousel {
 	position: relative;
-	width: 100%;
 	margin: 40px 0 0;
 	user-select: none;
+	width: 100%;
 
 	&__overlay {
 		display: none;
 	}
 
 	&__scroll {
+		width: 100%;
 		display: grid;
-		grid-auto-flow: column dense;
-		gap: 15px;
+		grid-auto-columns: calc((100% / 3) - (#{$item-gap} * 2 / 3));
+		grid-auto-flow: column;
+		column-gap: 20px;
 		overflow-x: scroll;
 
 		&::-webkit-scrollbar {

@@ -16,15 +16,15 @@ const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
 	const handleControlClick = (direction: boolean) => {
 		if (carousel.current) {
 			// Width of card + grid gap
-			const amount = carousel.current.children[0].clientWidth + 25;
-			const offset = direction
-				? carousel.current.scrollLeft + amount
-				: carousel.current.scrollLeft - amount;
+			const amount = carousel.current.children[0].clientWidth + 20;
 
-			carousel.current.scrollTo({
-				left: offset,
-				behavior: "smooth"
-			});
+			for (let i = 0; i < 100; i++) {
+				const step = (direction ? amount : -amount) / 100;
+
+				setTimeout(() => {
+					carousel.current?.scrollBy(step, 0);
+				}, 2 * i);
+			}
 		}
 	};
 
