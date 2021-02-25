@@ -1,4 +1,3 @@
-import { clear } from "console";
 import { useEffect, useState } from "react";
 
 const useFetch = <T>(url: string): [T | null, boolean, boolean] => {
