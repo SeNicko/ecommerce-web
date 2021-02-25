@@ -136,13 +136,11 @@ const Navbar: FunctionComponent = () => {
 				</Link>
 			</div>
 			<nav className="header__section">
-				{mobileToggle && (
-					<MobileNavbar
-						toggle={toggleMobileNav}
-						toggled={mobileToggle}
-						categories={categories}
-					/>
-				)}
+				<MobileNavbar
+					toggle={toggleMobileNav}
+					toggled={mobileToggle}
+					categories={categories}
+				/>
 				<div className="nav-desktop">
 					<ul className="nav-desktop__menu">
 						{categories &&

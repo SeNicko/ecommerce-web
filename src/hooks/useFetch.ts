@@ -1,3 +1,4 @@
+import { clear } from "console";
 import { useEffect, useState } from "react";
 
 const useFetch = <T>(url: string): [T | null, boolean, boolean] => {
@@ -5,7 +6,14 @@ const useFetch = <T>(url: string): [T | null, boolean, boolean] => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(false);
 
+	const clearState = () => {
+		setData(null);
+		setIsLoading(false);
+		setError(false);
+	};
+
 	useEffect(() => {
+		clearState();
 		fetch(url)
 			.then((res) => {
 				if (!res.ok) {
@@ -14,13 +22,12 @@ const useFetch = <T>(url: string): [T | null, boolean, boolean] => {
 				return res.json();
 			})
 			.then((data) => {
-				setIsLoading(false);
 				setData(data);
 			})
 			.catch(() => {
-				setIsLoading(false);
 				setError(true);
-			});
+			})
+			.finally(() => setIsLoading(false));
 	}, [url]);
 
 	return [data, isLoading, error];

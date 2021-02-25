@@ -1,3 +1,4 @@
+@use "../base/mixins";
 $item-gap: 15px;
 
 .carousel {
@@ -13,10 +14,10 @@ $item-gap: 15px;
 	&__scroll {
 		width: 100%;
 		display: grid;
-		grid-auto-columns: calc((100% / 3) - (#{$item-gap} * 2 / 3));
 		grid-auto-flow: column;
 		column-gap: 20px;
 		overflow-x: scroll;
+		cursor: pointer;
 
 		&::-webkit-scrollbar {
 			display: none;
@@ -38,6 +39,7 @@ $item-gap: 15px;
 		}
 
 		&__control {
+			@include mixins.button($padding: false);
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -57,6 +59,14 @@ $item-gap: 15px;
 		&__control-icon {
 			fill: #555;
 			transition: fill 0.2s ease-in-out;
+		}
+	}
+}
+
+@media (min-width: 1580px) {
+	.carousel {
+		&__scroll {
+			grid-auto-columns: calc((100% / 3) - (#{$item-gap} * 2 / 3));
 		}
 	}
 }

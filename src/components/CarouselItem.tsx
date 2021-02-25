@@ -5,15 +5,22 @@ import { Product } from "../interfaces/api";
 
 interface CarouselItemProps {
 	product: Product;
+	active: boolean;
 }
 
 const CarouselItem: FunctionComponent<CarouselItemProps> = ({
-	product: { images, slug, name, description, price }
+	product: { images, slug, name, description, price },
+	active
 }) => {
 	return (
-		<figure className="carousel-item">
-			<Link to={`/product/${slug}`}>
-				<img src={images[0].url} alt="" className="carousel-item__image" />
+		<figure className={`carousel-item ${active ? "carousel-item--deactivated" : ""}`}>
+			<Link to={`/product/${slug}`} draggable="false">
+				<img
+					src={images[0].url}
+					alt=""
+					className="carousel-item__image"
+					draggable="false"
+				/>
 				<div className="carousel-item__info">
 					<figcaption className="carousel-item__name">{name}</figcaption>
 					<p className="carousel-item__description">{description}</p>

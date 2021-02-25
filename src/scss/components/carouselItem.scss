@@ -3,6 +3,10 @@ $description: rgb(109, 109, 109);
 .carousel-item {
 	width: 300px;
 
+	&--deactivated {
+		pointer-events: none;
+	}
+
 	&__image {
 		width: 100%;
 		object-fit: cover;

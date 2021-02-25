@@ -44,7 +44,13 @@ const Category = () => {
 				)}
 				{data?.data &&
 					data.data.map((product: any, i: number) => (
-						<ProductCard product={product as Product} key={i} />
+						<>
+							<ProductCard product={product as Product} key={i} />
+							<ProductCard product={product as Product} key={i} />
+							<ProductCard product={product as Product} key={i} />
+							<ProductCard product={product as Product} key={i} />
+							<ProductCard product={product as Product} key={i} />
+						</>
 					))}
 			</section>
 		</div>

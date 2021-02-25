@@ -4,7 +4,7 @@ $mobile-nav-width: 320px;
 
 .nav-mobile {
 	@include mixins.flex($direction: column, $justify: flex-start, $align: flex-start);
-	visibility: hidden;
+	display: none;
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -32,6 +32,7 @@ $mobile-nav-width: 320px;
 
 	// Category name
 	&__category-name {
+		display: block;
 		font-size: 24px;
 	}
 
@@ -51,7 +52,7 @@ $mobile-nav-width: 320px;
 		width: 100%;
 		font-size: 18px;
 		background: white;
-		padding: 5px;
+		padding: 5px 0;
 
 		&--primary {
 			padding: 10px 0;
@@ -71,7 +72,7 @@ $mobile-nav-width: 320px;
 
 	&--shown {
 		position: absolute;
-		visibility: visible;
+		display: block;
 		transform: translateX(0px);
 	}
 }

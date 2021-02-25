@@ -1,5 +1,5 @@
 import "../scss/components/carousel.scss";
-import { FunctionComponent, useRef } from "react";
+import { FunctionComponent, useRef, useState, MouseEvent } from "react";
 import { Product } from "../interfaces/api";
 import CarouselItem from "./CarouselItem";
 
@@ -12,6 +12,9 @@ interface CarouselProps {
 
 const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
 	const carousel = useRef<HTMLDivElement>(null);
+	const [isAbleToDrag, setIsAbleToDrag] = useState(false);
+	const [isDragging, setIsDragging] = useState(false);
+	const [dragX, setDragX] = useState(0);
 
 	const handleControlClick = (direction: boolean) => {
 		if (carousel.current) {
@@ -28,21 +31,51 @@ const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
 		}
 	};
 
+	const toggleDragScroll = (e: MouseEvent) => {
+		setIsAbleToDrag(!isAbleToDrag);
+		setIsDragging(false);
+		setDragX(e.clientX);
+	};
+
+	const handleDragScroll = (e: MouseEvent) => {
+		if (isAbleToDrag && carousel.current && e.clientX !== dragX) {
+			carousel.current?.scrollBy(dragX - e.clientX, 0);
+			setDragX(e.clientX);
+			setIsDragging(true);
+		}
+	};
+
 	return (
 		<section className="carousel">
 			{products && products.length !== 0 && (
 				<div className="carousel__overlay">
-					<span className="carousel__control" onClick={() => handleControlClick(false)}>
+					<button className="carousel__control" onClick={() => handleControlClick(false)}>
 						<LeftArrow width="15" height="15" className="carousel__control-icon" />
-					</span>
-					<span className="carousel__control" onClick={() => handleControlClick(true)}>
+					</button>
+					<button className="carousel__control" onClick={() => handleControlClick(true)}>
 						<RightArrow width="15" height="15" className="carousel__control-icon" />
-					</span>
+					</button>
 				</div>
 			)}
-			<div className="carousel__scroll" ref={carousel}>
+			<div
+				className="carousel__scroll"
+				ref={carousel}
+				onMouseDown={toggleDragScroll}
+				onMouseUp={toggleDragScroll}
+				onMouseMove={handleDragScroll}
+				onMouseEnter={() => {
+					setIsAbleToDrag(false);
+					setIsDragging(false);
+				}}
+				onMouseLeave={() => {
+					setIsAbleToDrag(false);
+					setIsDragging(false);
+				}}
+			>
 				{products &&
-					products.map((product, i) => <CarouselItem product={product} key={i} />)}
+					products.map((product, i) => (
+						<CarouselItem product={product} key={i} active={isDragging} />
+					))}
 			</div>
 		</section>
 	);
