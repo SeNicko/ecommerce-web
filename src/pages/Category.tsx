@@ -3,8 +3,9 @@ import useFetch from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import Checkbox from "../components/Checkbox";
-import { Product, ResourceRequest } from "../interfaces/api";
-import { useEffect, useState } from "react";
+import { IProduct, IResourceRequest } from "../interfaces/api";
+import { useState } from "react";
+import { apiUri } from "../config/api";
 
 interface CategoryPageParams {
 	categorySlug: string;
@@ -12,8 +13,8 @@ interface CategoryPageParams {
 
 const Category = () => {
 	const { categorySlug } = useParams<CategoryPageParams>();
-	const [products, isLoading, error] = useFetch<ResourceRequest<Product>>(
-		`http://localhost:3000/categories/${categorySlug}/products?type=slug`
+	const [products, isLoading, error] = useFetch<IResourceRequest<IProduct>>(
+		`${apiUri}/categories/${categorySlug}/products?type=slug`
 	);
 
 	const [mobileToggled, setMobileToggled] = useState(false);
@@ -62,7 +63,7 @@ const Category = () => {
 					)}
 					{products?.data &&
 						products.data.map((product: any, i: number) => (
-							<ProductCard product={product as Product} key={i} />
+							<ProductCard product={product as IProduct} key={i} />
 						))}
 				</section>
 			</section>

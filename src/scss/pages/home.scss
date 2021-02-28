@@ -50,6 +50,7 @@
 
 	&__button {
 		@include mixins.button($primary: true);
+		width: fit-content;
 	}
 }
 

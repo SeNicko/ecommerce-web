@@ -3,7 +3,7 @@ import { useState, FunctionComponent, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as RightArrow } from "../assets/icons/chevron-right.svg";
 import { ReactComponent as LeftArrow } from "../assets/icons/chevron-left.svg";
-import { Category } from "../interfaces/api";
+import { ICategory } from "../interfaces/api";
 
 interface MobileNavbarButtonProps {
 	primary: boolean;
@@ -32,15 +32,15 @@ const MobileNavbarButton: FunctionComponent<MobileNavbarButtonProps> = ({
 };
 
 interface MobileNavbarProps {
-	categories: Category[];
+	categories: ICategory[];
 	toggled: boolean;
 	toggle: () => void;
 }
 
 const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, categories }) => {
 	const [nest, setNest] = useState<number[]>([]);
-	const [displayedCategories, setDisplayedCategories] = useState<Category[]>([]);
-	const [parentCategory, setParentCategory] = useState<Category>();
+	const [displayedCategories, setDisplayedCategories] = useState<ICategory[]>([]);
+	const [parentCategory, setParentCategory] = useState<ICategory>();
 
 	// Go next in category tree
 	const next = (level: number) => setNest([...nest, level]);
@@ -56,14 +56,14 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, c
 
 	useEffect(() => {
 		// set current categories to all categories
-		let currentCategories: Category[] = categories;
+		let currentCategories: ICategory[] = categories;
 
 		// For each nest level
 		nest.forEach((nestLevel) => {
 			// Check if category have children and update parent and current categories
 			if (currentCategories[nestLevel].children) {
 				setParentCategory(currentCategories[nestLevel]);
-				currentCategories = currentCategories[nestLevel].children as Category[];
+				currentCategories = currentCategories[nestLevel].children as ICategory[];
 			}
 		});
 

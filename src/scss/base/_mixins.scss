@@ -10,7 +10,6 @@
 
 	outline: none;
 	border: none;
-	width: fit-content;
 	border-radius: 50px;
 	cursor: pointer;
 
@@ -24,7 +23,7 @@
 		color: white;
 		background: black;
 	} @else {
-		border: 1px solid black;
+		border: 1px solid rgb(187, 187, 187);
 		background: white;
 	}
 }

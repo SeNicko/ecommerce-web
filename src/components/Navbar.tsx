@@ -1,7 +1,7 @@
 import "../scss/components/navbar.scss";
 import { Link } from "react-router-dom";
 import { FunctionComponent, useState } from "react";
-import { Category } from "../interfaces/api";
+import { ICategory } from "../interfaces/api";
 import MobileNavbar from "./MobileNavbar";
 
 import { ReactComponent as Bag } from "../assets/icons/bag.svg";
@@ -11,7 +11,7 @@ const Navbar: FunctionComponent = () => {
 	const [mobileToggle, setMobileToggle] = useState(false);
 
 	// This should be fetched from the server (hardcoded for now)
-	const categories: Category[] = [
+	const categories: ICategory[] = [
 		{
 			name: "Men",
 			slug: "men",

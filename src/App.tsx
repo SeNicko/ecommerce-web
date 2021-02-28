@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Category from "./pages/Category";
 import Navbar from "./components/Navbar";
+import Product from "./pages/Product";
 import Footer from "./components/Footer";
 
 function App() {
@@ -23,8 +24,11 @@ function App() {
 						<Route path="/" exact>
 							<Home />
 						</Route>
-						<Route path="/category/:categorySlug">
+						<Route path="/category/:categorySlug" exact>
 							<Category />
+						</Route>
+						<Route path="/product/:productSlug" exact>
+							<Product />
 						</Route>
 					</Switch>
 				</div>

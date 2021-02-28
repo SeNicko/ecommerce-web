@@ -1,10 +1,10 @@
 import "../scss/components/productCard.scss";
 import { FunctionComponent } from "react";
-import { Product } from "../interfaces/api";
+import { IProduct } from "../interfaces/api";
 import { Link } from "react-router-dom";
 
 interface ProductCardProps {
-	product: Product;
+	product: IProduct;
 }
 
 const ProductCard: FunctionComponent<ProductCardProps> = ({

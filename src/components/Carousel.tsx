@@ -1,13 +1,13 @@
 import "../scss/components/carousel.scss";
-import { FunctionComponent, useRef, useState, MouseEvent, useEffect } from "react";
-import { Product } from "../interfaces/api";
+import { FunctionComponent, useRef, useState, MouseEvent } from "react";
+import { IProduct } from "../interfaces/api";
 import CarouselItem from "./CarouselItem";
 
 import { ReactComponent as LeftArrow } from "../assets/icons/chevron-left.svg";
 import { ReactComponent as RightArrow } from "../assets/icons/chevron-right.svg";
 
 interface CarouselProps {
-	products: Product[];
+	products: IProduct[];
 }
 
 const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
@@ -44,7 +44,7 @@ const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
 			setIsDragging(true);
 		}
 	};
-	
+
 	return (
 		<section className="carousel">
 			{products && products.length !== 0 && (

@@ -1,23 +1,19 @@
 import "../scss/pages/home.scss";
 import { Link } from "react-router-dom";
-import { Product, ResourceRequest } from "../interfaces/api";
+import { IProduct, IResourceRequest } from "../interfaces/api";
 import spotlightImage from "../assets/images/spotlight.jpg";
 import Carousel from "../components/Carousel";
 import useFetch from "../hooks/useFetch";
-import { useEffect } from "react";
+import { apiUri } from "../config/api";
 
 const Home = () => {
-	const [menProducts, menProductsLoading, menProductsError] = useFetch<ResourceRequest<Product>>(
-		"http://localhost:3000/categories/men/products?type=slug"
-	);
+	const [menProducts, menProductsLoading, menProductsError] = useFetch<
+		IResourceRequest<IProduct>
+	>(`${apiUri}/categories/men/products?type=slug`);
 
 	const [womenProducts, womenProductsLoading, womenProductsError] = useFetch<
-		ResourceRequest<Product>
-	>("http://localhost:3000/categories/women/products?type=slug");
-
-	useEffect(() => {
-		console.log(menProducts);
-	}, []);
+		IResourceRequest<IProduct>
+	>(`${apiUri}/categories/women/products?type=slug`);
 
 	return (
 		<div className="home">
@@ -35,11 +31,11 @@ const Home = () => {
 			</section>
 			<section className="home__section">
 				<h2 className="home__section-title">New products for Men</h2>
-				<Carousel products={menProducts?.data ?? ([] as Product[])} />
+				<Carousel products={menProducts?.data ?? ([] as IProduct[])} />
 			</section>
 			<section className="home__section">
 				<h2 className="home__section-title">New products for Women</h2>
-				<Carousel products={womenProducts?.data ?? ([] as Product[])} />
+				<Carousel products={womenProducts?.data ?? ([] as IProduct[])} />
 			</section>
 		</div>
 	);

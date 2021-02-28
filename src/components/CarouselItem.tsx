@@ -1,10 +1,10 @@
 import "../scss/components/carouselItem.scss";
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { Product } from "../interfaces/api";
+import { IProduct } from "../interfaces/api";
 
 interface CarouselItemProps {
-	product: Product;
+	product: IProduct;
 	active: boolean;
 }
 

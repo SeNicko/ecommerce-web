@@ -1,10 +1,10 @@
-export interface Category {
+export interface ICategory {
 	name: string;
 	slug: string;
-	children: Category[] | null;
+	children: ICategory[] | null;
 }
 
-export interface Product {
+export interface IProduct {
 	name: string;
 	description: string;
 	price: number;
@@ -15,8 +15,6 @@ export interface Product {
 	slug: string;
 }
 
-export interface ResourceRequest<T> {
+export interface IResourceRequest<T> {
 	data: T[];
 }
-
-export type SingleResourceRequest<T> = T[];
