@@ -4,6 +4,7 @@ import { Product, ResourceRequest } from "../interfaces/api";
 import spotlightImage from "../assets/images/spotlight.jpg";
 import Carousel from "../components/Carousel";
 import useFetch from "../hooks/useFetch";
+import { useEffect } from "react";
 
 const Home = () => {
 	const [menProducts, menProductsLoading, menProductsError] = useFetch<ResourceRequest<Product>>(
@@ -13,6 +14,10 @@ const Home = () => {
 	const [womenProducts, womenProductsLoading, womenProductsError] = useFetch<
 		ResourceRequest<Product>
 	>("http://localhost:3000/categories/women/products?type=slug");
+
+	useEffect(() => {
+		console.log(menProducts);
+	}, []);
 
 	return (
 		<div className="home">

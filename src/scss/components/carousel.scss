@@ -39,7 +39,6 @@ $item-gap: 15px;
 		}
 
 		&__control {
-			@include mixins.button($padding: false);
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -49,6 +48,7 @@ $item-gap: 15px;
 			margin-bottom: 80px;
 			border-radius: 50%;
 			pointer-events: all;
+			border: none;
 			cursor: pointer;
 
 			&:hover &-icon {

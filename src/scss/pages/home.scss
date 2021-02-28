@@ -53,14 +53,6 @@
 	}
 }
 
-.products {
-	display: flex;
-	gap: 40px;
-	width: 100vw;
-	overflow-x: scroll;
-	padding: 40px 0;
-}
-
 @media (min-width: 750px) {
 	.home {
 		padding: 40px;

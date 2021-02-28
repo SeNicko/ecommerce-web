@@ -1,5 +1,5 @@
 import "../scss/components/carousel.scss";
-import { FunctionComponent, useRef, useState, MouseEvent } from "react";
+import { FunctionComponent, useRef, useState, MouseEvent, useEffect } from "react";
 import { Product } from "../interfaces/api";
 import CarouselItem from "./CarouselItem";
 
@@ -44,7 +44,7 @@ const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
 			setIsDragging(true);
 		}
 	};
-
+	
 	return (
 		<section className="carousel">
 			{products && products.length !== 0 && (

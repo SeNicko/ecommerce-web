@@ -184,11 +184,11 @@ const Navbar: FunctionComponent = () => {
 				</div>
 			</nav>
 			<div className="header__section header__section--right">
-				<Link to="/cart" className="header__actions-item">
+				<Link to="/cart" className="header__actions-link">
 					<Bag />
 				</Link>
 				<button
-					className="header__nav-mobile-toggle header__actions-item"
+					className="header__nav-mobile-toggle header__actions-button"
 					onClick={toggleMobileNav}
 				>
 					<List />

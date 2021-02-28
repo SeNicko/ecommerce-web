@@ -10,7 +10,7 @@ $header-height: 60px;
 	position: sticky;
 	top: 0;
 	background: #fff;
-	padding: 0 5vw;
+	padding: 0 20px;
 	z-index: 2;
 
 	&__section {
@@ -26,9 +26,16 @@ $header-height: 60px;
 		}
 	}
 
-	&__actions-item {
-		@include mixins.button($padding: false);
+	&__actions-link {
 		margin-left: 20px;
+	}
+
+	&__actions-button {
+		border: none;
+		outline: none;
+		background: white;
+		margin-left: 20px;
+		cursor: pointer;
 	}
 }
 
@@ -111,5 +118,11 @@ $header-height: 60px;
 				color: black;
 			}
 		}
+	}
+}
+
+@media (min-width: 1030px) {
+	.header {
+		padding: 0 10vw;
 	}
 }

@@ -18,14 +18,16 @@ function App() {
 						Sign in
 					</Link>
 				</section>
-				<Switch>
-					<Route path="/" exact>
-						<Home />
-					</Route>
-					<Route path="/category/:categorySlug">
-						<Category />
-					</Route>
-				</Switch>
+				<div className="wrapper">
+					<Switch>
+						<Route path="/" exact>
+							<Home />
+						</Route>
+						<Route path="/category/:categorySlug">
+							<Category />
+						</Route>
+					</Switch>
+				</div>
 				<Footer />
 			</div>
 		</Router>

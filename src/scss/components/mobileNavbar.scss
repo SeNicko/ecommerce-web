@@ -22,7 +22,10 @@ $mobile-nav-width: 320px;
 
 	// back button
 	&__back-button {
-		@include mixins.button($padding: false);
+		background: white;
+		outline: none;
+		border: none;
+		cursor: pointer;
 	}
 
 	&__back-button-content {
@@ -48,11 +51,14 @@ $mobile-nav-width: 320px;
 
 	// Menu button
 	&__menu-button {
-		@include mixins.button($justify: space-between);
+		cursor: pointer;
+		@include mixins.flex($justify: space-between);
 		width: 100%;
 		font-size: 18px;
 		background: white;
 		padding: 5px 0;
+		outline: none;
+		border: none;
 
 		&--primary {
 			padding: 10px 0;

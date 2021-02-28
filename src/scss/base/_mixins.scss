@@ -16,7 +16,7 @@
 
 	// Check if set padding
 	@if $padding {
-		padding: 0.8em 1.5em;
+		padding: 0.5em 1.5em;
 	}
 
 	// Check if primary
@@ -24,6 +24,7 @@
 		color: white;
 		background: black;
 	} @else {
+		border: 1px solid black;
 		background: white;
 	}
 }
