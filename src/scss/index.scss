@@ -22,3 +22,28 @@ ul {
 .wrapper {
 	@include mixins.flex();
 }
+
+.auth-status {
+	@include mixins.flex($justify: flex-end);
+	padding: 5px 20px;
+	font-size: 14px;
+	background: #eee;
+
+	&__spacer {
+		padding: 0 10px;
+	}
+
+	&__logout {
+		border: none;
+		outline: none;
+		background: transparent;
+		cursor: pointer;
+		font-size: 14px;
+	}
+}
+
+@media (min-width: 1030px) {
+	.auth-status {
+		padding: 5px 10vw;
+	}
+}

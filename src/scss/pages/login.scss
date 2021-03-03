@@ -1,0 +1,22 @@
+@use "../base/mixins";
+
+.login {
+	@include mixins.flex($direction: column);
+	width: 100%;
+	padding: 10em;
+
+	&__form {
+		display: grid;
+		gap: 10px;
+	}
+
+	&__input {
+		@include mixins.input;
+	}
+
+	&__submit {
+		@include mixins.button($primary: true);
+		width: fit-content;
+		font-size: 16px;
+	}
+}
