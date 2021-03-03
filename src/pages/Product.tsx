@@ -4,7 +4,6 @@ import useFetch from "../hooks/useFetch";
 import { apiUri } from "../config/api";
 import { useParams } from "react-router-dom";
 import { IProduct } from "../interfaces/api";
-import Carousel from "../components/Carousel";
 
 interface ProductPageParams {
 	productSlug: string;
