@@ -49,12 +49,12 @@ const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
 		<section className="carousel">
 			{products && products.length !== 0 && (
 				<div className="carousel__overlay">
-					<button className="carousel__control" onClick={() => handleControlClick(false)}>
+					<span className="carousel__control" onClick={() => handleControlClick(false)}>
 						<LeftArrow width="15" height="15" className="carousel__control-icon" />
-					</button>
-					<button className="carousel__control" onClick={() => handleControlClick(true)}>
+					</span>
+					<span className="carousel__control" onClick={() => handleControlClick(true)}>
 						<RightArrow width="15" height="15" className="carousel__control-icon" />
-					</button>
+					</span>
 				</div>
 			)}
 			<div

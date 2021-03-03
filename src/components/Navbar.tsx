@@ -184,11 +184,12 @@ const Navbar: FunctionComponent = () => {
 				</div>
 			</nav>
 			<div className="header__section header__section--right">
-				<Link to="/cart" className="header__actions-link">
+				<Link aria-label="shopping bag" to="/cart" className="header__actions-link">
 					<Bag />
 				</Link>
 				<button
 					className="header__nav-mobile-toggle header__actions-button"
+					aria-label="toggle mobile navbar"
 					onClick={toggleMobileNav}
 				>
 					<List />
