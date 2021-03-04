@@ -38,9 +38,7 @@ const App = () => {
 		setAccessToken!(null);
 	};
 
-	useEffect(() => {
-		checkIfIsLogged();
-	}, []);
+	checkIfIsLogged();
 
 	return (
 		<Router>
@@ -75,15 +73,13 @@ const App = () => {
 						Sign in
 					</Link>
 				</section>
-				<div className="wrapper">
-					<Switch>
-						<Route path="/" component={Home} exact />
-						<Route path="/category/:categorySlug" component={Category} exact />
-						<Route path="/product/:productSlug" component={Product} exact />
-						<Route path="/login" component={Login} exact />
-						<Route path="/register" component={Register} exact />
-					</Switch>
-				</div>
+				<Switch>
+					<Route path="/" component={Home} exact />
+					<Route path="/category/:categorySlug" component={Category} exact />
+					<Route path="/product/:productSlug" component={Product} exact />
+					<Route path="/login" component={Login} exact />
+					<Route path="/register" component={Register} exact />
+				</Switch>
 				<Footer />
 			</div>
 		</Router>
