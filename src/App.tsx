@@ -10,11 +10,11 @@ import Register from "./pages/Register";
 import { useContext, useEffect } from "react";
 import { UserContext } from "./context/userContext";
 import { getRefreshToken } from "./util/auth";
-import { useHistory } from "react-router-dom";
 
 const App = () => {
 	const { logged, userEmail, setLogged, setUserEmail, setAccessToken } = useContext(UserContext);
 
+	// Refactor this later
 	const checkIfIsLogged = async () => {
 		const data = await getRefreshToken();
 

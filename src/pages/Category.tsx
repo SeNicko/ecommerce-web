@@ -51,9 +51,9 @@ const Category = () => {
 					</section>
 					<section className="filter__section">
 						<h3 className="filter__title">Brand</h3>
-						<Checkbox label="$0 - $25" onChange={(e) => console.log(e)} />
-						<Checkbox label="$0 - $25" onChange={(e) => console.log(e)} />
-						<Checkbox label="$0 - $25" onChange={(e) => console.log(e)} />
+						<Checkbox label="Nike" onChange={(e) => console.log(e)} />
+						<Checkbox label="Jordan" onChange={(e) => console.log(e)} />
+						<Checkbox label="Other" onChange={(e) => console.log(e)} />
 					</section>
 				</aside>
 				<section className="products">

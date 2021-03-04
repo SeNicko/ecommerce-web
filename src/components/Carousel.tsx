@@ -19,7 +19,7 @@ const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
 	const handleControlClick = (direction: boolean) => {
 		if (carousel.current) {
 			// Width of card + grid gap
-			const amount = carousel.current.children[0].clientWidth + 20;
+			const amount = carousel.current.children[0].clientWidth;
 
 			for (let i = 0; i < 100; i++) {
 				const step = (direction ? amount : -amount) / 100;

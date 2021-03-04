@@ -24,7 +24,7 @@ ul {
 }
 
 .auth-status {
-	@include mixins.flex($justify: flex-end);
+	display: none;
 	padding: 5px 20px;
 	font-size: 14px;
 	background: #eee;
@@ -39,6 +39,12 @@ ul {
 		background: transparent;
 		cursor: pointer;
 		font-size: 14px;
+	}
+}
+
+@media (min-width: 770px) {
+	.auth-status {
+		@include mixins.flex($justify: flex-end);
 	}
 }
 
