@@ -7,7 +7,7 @@ import Product from "./pages/Product";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "./context/userContext";
 import { getRefreshToken } from "./util/auth";
 
@@ -16,28 +16,36 @@ const App = () => {
 
 	// Refactor this later
 	const checkIfIsLogged = async () => {
+		// Get refresh token
 		const data = await getRefreshToken();
 
 		if (data.error) {
 			// Handle error
 		} else {
+			// Set logged in state
 			setLogged!(true);
+			// Set user email
 			setUserEmail!(data.userEmail);
+			// Set access token for api calls
 			setAccessToken!(data.accessToken);
 		}
 	};
 
+	// Allow to logout
 	const logout = async () => {
+		// Remove cookie by accessing api
 		fetch("http://localhost:3000/users/logout", {
 			method: "POST",
 			credentials: "include"
 		});
 
+		// Clear user from state
 		setLogged!(false);
 		setUserEmail!(null);
 		setAccessToken!(null);
 	};
 
+	// Check if user is logged (If there is a cookie with valid refresh token)
 	checkIfIsLogged();
 
 	return (

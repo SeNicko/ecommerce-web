@@ -1,6 +1,6 @@
 import "../scss/components/navbar.scss";
 import { Link } from "react-router-dom";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { ICategory } from "../interfaces/api";
 import MobileNavbar from "./MobileNavbar";
 

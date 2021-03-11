@@ -13,7 +13,12 @@ const ProductCard: FunctionComponent<ProductCardProps> = ({
 	return (
 		<Link to={`/product/${slug}`}>
 			<figure className="product-card">
-				<img src={images[0].url} alt={images[0].alt} className="product-card__image" />
+				<img
+					src={images[0].url}
+					alt={images[0].alt}
+					className="product-card__image"
+					draggable="false"
+				/>
 				<div className="product-card__info">
 					<figcaption className="product-card__name">{name}</figcaption>
 					<p className="product-card__description">{description}</p>

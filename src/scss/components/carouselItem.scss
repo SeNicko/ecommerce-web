@@ -1,33 +1,8 @@
-$description: rgb(109, 109, 109);
-
 .carousel-item {
 	width: 300px;
 
 	&--deactivated {
 		pointer-events: none;
-	}
-
-	&__image {
-		width: 100%;
-		object-fit: cover;
-	}
-
-	&__info {
-		padding: 10px 0;
-		display: grid;
-		gap: 8px;
-	}
-
-	&__name {
-		color: black;
-	}
-
-	&__description {
-		color: $description;
-	}
-
-	&__price {
-		font-weight: 600;
 	}
 }
 

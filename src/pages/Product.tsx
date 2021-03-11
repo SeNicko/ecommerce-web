@@ -16,12 +16,14 @@ const Product: FunctionComponent = () => {
 	);
 	const productImages = useMemo(() => data?.images.slice(1), [data]);
 
-	return (
-		<div className="product-wrapper">
-			{error && <p>Are you looking for an existing product?</p>}
-			{isLoading && <p>Page is loading...</p>}
-			{data && (
-				<>
+	if (error) {
+		return <p>Are you looking for an existing product?</p>;
+	} else if (isLoading) {
+		return <p>Page is loading</p>;
+	} else {
+		return (
+			data && (
+				<div className="product-wrapper">
 					<section className="product-gallery">
 						{productImages &&
 							productImages.map(({ url }, i) => (
@@ -29,26 +31,28 @@ const Product: FunctionComponent = () => {
 							))}
 					</section>
 					<section className="product-details">
-						<header className="product-details__header">
-							<section className="product-details__meta">
-								<p className="product-details__description">{data.description}</p>
-								<span className="product-details__price">${data.price}</span>
+						<header className="product-details-header">
+							<section className="product-details-meta">
+								<p className="product-details-meta__description">
+									{data.description}
+								</p>
+								<span className="product-details-meta__price">${data.price}</span>
 							</section>
-							<h1 className="product-details__name">{data.name}</h1>
+							<h1 className="product-details-header__name">{data.name}</h1>
 						</header>
-						<section className="product-details__actions">
-							<button className="product-details__actions-button product-details__actions-button--primary">
+						<section className="product-details-actions">
+							<button className="product-details-actions__button product-details-actions__button--primary">
 								Add to bag
 							</button>
-							<button className="product-details__actions-button">
+							<button className="product-details-actions__button">
 								Add to favourites
 							</button>
 						</section>
 					</section>
-				</>
-			)}
-		</div>
-	);
+				</div>
+			)
+		);
+	}
 };
 
 export default Product;

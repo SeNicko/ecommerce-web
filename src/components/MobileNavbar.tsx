@@ -52,6 +52,7 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, c
 		setNest(newNest);
 	};
 
+	// Clear navbar nest when toogled value changes
 	useEffect(() => setNest([]), [toggled]);
 
 	useEffect(() => {

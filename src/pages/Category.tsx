@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import Checkbox from "../components/Checkbox";
 import { IProduct, IResourceRequest } from "../interfaces/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { apiUri } from "../config/api";
 
 interface CategoryPageParams {
@@ -17,24 +17,29 @@ const Category = () => {
 		`${apiUri}/categories/${categorySlug}/products?type=slug`
 	);
 
-	const [mobileToggled, setMobileToggled] = useState(false);
+	const [mobileToggle, setMobileToggle] = useState(false);
+
+	const toggleMobileFilter = () => {
+		setMobileToggle(!mobileToggle);
+
+		// Toggle ability to scroll page depending on mobileToggle
+		if (mobileToggle) {
+			document.body.style.overflow = "visible";
+		} else {
+			document.body.style.overflow = "hidden";
+		}
+	};
 
 	return (
 		<div className="wall">
 			<header className="wall__header">
-				<button
-					className="wall__header-button"
-					onClick={() => setMobileToggled(!mobileToggled)}
-				>
+				<button className="wall__header-button" onClick={toggleMobileFilter}>
 					filter
 				</button>
 			</header>
 			<section className="wall__content">
-				<aside className={`filter ${mobileToggled ? "filter--mobile-shown" : ""}`}>
-					<button
-						className="filter__close-mobile"
-						onClick={() => setMobileToggled(!mobileToggled)}
-					>
+				<aside className={`filter ${mobileToggle ? "filter--mobile-shown" : ""}`}>
+					<button className="filter__close-mobile" onClick={toggleMobileFilter}>
 						close
 					</button>
 					<section className="filter__section">
