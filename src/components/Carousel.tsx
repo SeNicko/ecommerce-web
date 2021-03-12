@@ -11,10 +11,8 @@ import { useDragScroll } from "../hooks/useDragScroll";
 interface CarouselProps {
 	products: IProduct[];
 }
-const Carousel: FunctionComponent<CarouselProps> = ({ products }) => {
-	// Get carousel html element
+const Carousel: FunctionComponent<CarouselProps> = ({ products, children }) => {
 	const carousel = useRef<HTMLDivElement>(null);
-	// Get logic for dragging
 	const { isDragging, events } = useDragScroll(carousel);
 
 	const handleControlClick = (direction: boolean) => {

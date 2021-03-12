@@ -4,32 +4,7 @@ import { Link } from "react-router-dom";
 import { ReactComponent as RightArrow } from "../assets/icons/chevron-right.svg";
 import { ReactComponent as LeftArrow } from "../assets/icons/chevron-left.svg";
 import { ICategory } from "../interfaces/api";
-
-interface MobileNavbarButtonProps {
-	primary: boolean;
-	content: string;
-}
-
-const MobileNavbarButton: FunctionComponent<MobileNavbarButtonProps> = ({
-	primary,
-	content,
-	children
-}) => {
-	return (
-		<button
-			className={`nav-mobile__menu-button ${primary && "nav-mobile__menu-button--primary"}`}
-		>
-			<span
-				className={`nav-mobile__menu-button-content ${
-					primary && "nav-mobile__menu-button-content--primary"
-				}`}
-			>
-				{content}
-			</span>
-			{children}
-		</button>
-	);
-};
+import MobileNavbarButton from "./MobileNavbarButton";
 
 interface MobileNavbarProps {
 	categories: ICategory[];
@@ -55,6 +30,7 @@ const MobileNavbar: FunctionComponent<MobileNavbarProps> = ({ toggled, toggle, c
 	// Clear navbar nest when toogled value changes
 	useEffect(() => setNest([]), [toggled]);
 
+	// Update displayed categories when nest or categories change
 	useEffect(() => {
 		// set current categories to all categories
 		let currentCategories: ICategory[] = categories;

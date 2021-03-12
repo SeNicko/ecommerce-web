@@ -31,22 +31,18 @@ const Product: FunctionComponent = () => {
 							))}
 					</section>
 					<section className="product-details">
-						<header className="product-details-header">
-							<section className="product-details-meta">
-								<p className="product-details-meta__description">
-									{data.description}
-								</p>
-								<span className="product-details-meta__price">${data.price}</span>
+						<header className="product-details__header">
+							<section className="product-details__meta">
+								<p className="product-details__description">{data.description}</p>
+								<span className="product-details__price">${data.price}</span>
 							</section>
-							<h1 className="product-details-header__name">{data.name}</h1>
+							<h1 className="product-details__name">{data.name}</h1>
 						</header>
-						<section className="product-details-actions">
-							<button className="product-details-actions__button product-details-actions__button--primary">
+						<section className="product-details__actions">
+							<button className="product-details__button product-details__button--primary">
 								Add to bag
 							</button>
-							<button className="product-details-actions__button">
-								Add to favourites
-							</button>
+							<button className="product-details__button">Add to favourites</button>
 						</section>
 					</section>
 				</div>

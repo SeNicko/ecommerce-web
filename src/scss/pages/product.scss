@@ -30,22 +30,22 @@
 	&__meta {
 		@include mixins.flex($justify: space-between);
 	}
-}
 
-.product-details-header {
-	display: grid;
-	gap: 5px;
-	width: 100%;
+	&__header {
+		display: grid;
+		gap: 5px;
+		width: 100%;
 
-	&__name {
-		font-size: 28px;
-		font-weight: 400;
+		&__name {
+			font-size: 28px;
+			font-weight: 400;
+		}
 	}
-}
 
-.product-details-actions {
-	display: grid;
-	gap: 10px;
+	&__actions {
+		display: grid;
+		gap: 10px;
+	}
 
 	&__button {
 		@include mixins.button($justify: center);
@@ -57,10 +57,10 @@
 			@include mixins.button($justify: center, $primary: true);
 		}
 	}
-}
 
-.product-details-meta {
-	@include mixins.flex($justify: space-between);
+	&__meta {
+		@include mixins.flex($justify: space-between);
+	}
 
 	&__description {
 		max-width: 60%;

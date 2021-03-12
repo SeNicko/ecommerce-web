@@ -7,71 +7,13 @@ import Product from "./pages/Product";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useContext } from "react";
-import { UserContext } from "./context/userContext";
-import { getRefreshToken } from "./util/auth";
+import AuthBar from "./components/AuthBar";
 
 const App = () => {
-	const { logged, userEmail, setLogged, setUserEmail, setAccessToken } = useContext(UserContext);
-
-	// Refactor this later
-	const checkIfIsLogged = async () => {
-		// Get refresh token
-		const data = await getRefreshToken();
-
-		if (data.error) {
-			// Handle error
-		} else {
-			// Set logged in state
-			setLogged!(true);
-			// Set user email
-			setUserEmail!(data.userEmail);
-			// Set access token for api calls
-			setAccessToken!(data.accessToken);
-		}
-	};
-
-	// Allow to logout
-	const logout = async () => {
-		// Remove cookie by accessing api
-		fetch("http://localhost:3000/users/logout", {
-			method: "POST",
-			credentials: "include"
-		});
-
-		// Clear user from state
-		setLogged!(false);
-		setUserEmail!(null);
-		setAccessToken!(null);
-	};
-
-	// Check if user is logged (If there is a cookie with valid refresh token)
-	checkIfIsLogged();
-
 	return (
 		<Router>
 			<div className="App">
-				<section className="auth-status">
-					{logged ? (
-						<>
-							<span>{userEmail}</span>
-							<span className="auth-status__spacer">|</span>
-							<button className="auth-status__logout" onClick={logout}>
-								log out
-							</button>
-						</>
-					) : (
-						<>
-							<Link className="auth-status__link" to="/register">
-								register
-							</Link>
-							<span className="auth-status__spacer">|</span>
-							<Link className="auth-status__link" to="/login">
-								login
-							</Link>
-						</>
-					)}
-				</section>
+				<AuthBar />
 				<Navbar />
 				<section className="news">
 					<p className="news__item">
